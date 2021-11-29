@@ -1,0 +1,79 @@
+body {
+    font-family: "Lato", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #2d3139;
+}
+
+#landing {
+    height: 100%;
+    width: 100%;
+}
+
+h1 {
+    position: absolute;
+    left: 50%;
+    margin-left: -325px;
+    width: 750px;
+    
+    font-size: 40px;
+    text-align: center;
+    color: #07b8bf;
+}
+
+p {
+    position: absolute;
+    left: 50%;
+    margin-left: -325px;
+    top: 160px;
+    width: 750px;
+    
+    font-size: 20px;
+    text-align: center;
+    color: #fff;
+}
+
+#anchor {
+    position: absolute;
+    left: 50%;
+    margin-left: -32px;
+
+    animation-name: landingButton;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+#world {
+    float: left;
+}
+
+#stats {
+    text-align: center;
+    float: right;
+    width: 500px;
+    padding-right: 100px;
+}
+
+#chart {
+    clear: right;
+}
+
+#deaths {
+    color: white;
+}
+
+#damages {
+    color: white;
+}
+
+@keyframes landingButton {
+    0% {
+        bottom: 60px;
+    }
+    50% {
+        bottom: 50px;
+    }
+    100% {
+        bottom: 60px;
+    }
+}

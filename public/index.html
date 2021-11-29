@@ -1,0 +1,31 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css"/>
+  <title>Postgres node.js template med d3.js</title>
+
+    <body>
+        <div id="landing">
+            <br />
+            <h1>Hvilke ekstreme vejr fænomener er hyppigst og hvilken konsekvens har de</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate et quasi nesciunt cum eveniet modi laboriosam iure voluptas molestiae itaque iste, praesentium eius dolorum vitae nulla, nobis dolores, voluptatibus deserunt.</p>
+            <a id="anchor" href="#world"><img src="arrow.png" alt="This should be an arrow" /></a>
+        </div>
+        <!-- Create an element where the map will take place -->
+        <svg id="world" width="900" height="725"></svg>
+
+        <div id="stats">
+            <h2 id="deaths">Deaths: <span>1</span></h2>
+            <h2 id="damages">Damage: <span>1</span></h2>
+        </div>
+
+        <!-- Create a div where the graph will take place -->
+        <div id="chart"></div>
+        <script src="https://d3js.org/d3.v6.js"></script>
+        <script src="main.js"></script>
+    </body>
+</html>
