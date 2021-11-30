@@ -22,18 +22,18 @@ const DB_PORT = process.env.DB_PORT || 5432;
  * I stedet for at ændre på DB-værdierne i koden herover, er det bedre at gøre det som
  * en del af den måde man kører programmet på. Hver DB-værdi kan sættes i terminalen
  * inden man kører programmet. Det gør man sådan her:
- * 
+ *
  * $ export DB_NAME="kristians-database"
- * 
+ *
  * Nu er DB_NAME sat til "kristians-database" når programmet kører, uden at man har
  * ændret i JavaScript-koden. Dette skal gøres hver gang du åbner en ny terminal.
  * Det skal helst gøres både for DB_NAME, DB_PW, DB_USER og DB_HOST.
  * PORT og DB_PORT plejer man ikke at ændre.
  */
 
-  console.warn("Lige nu er databasenavn sat til:", DB_NAME);
-  console.log("Postgres database:", DB_NAME);
-  console.log("Postgres user:", DB_USER);
+console.warn("Lige nu er databasenavn sat til:", DB_NAME);
+console.log("Postgres database:", DB_NAME);
+console.log("Postgres user:", DB_USER);
 
 /*
  * Herunder laves web-serveren. Den indeholder din html (fra public-folderen)
@@ -41,17 +41,17 @@ const DB_PORT = process.env.DB_PORT || 5432;
  */
 const app = express();
 const client = new Client({
-  user: DB_USER,
-  host: DB_HOST,
-  database: DB_NAME,
-  password: DB_PW,
-  port: DB_PORT
+    user: DB_USER,
+    host: DB_HOST,
+    database: DB_NAME,
+    password: DB_PW,
+    port: DB_PORT,
 });
 client.connect();
 
 app.use(express.text());
-app.use(express.static("public"))
-app.use(morgan("combined")); 
+app.use(express.static("public"));
+app.use(morgan("combined"));
 
 /*
  * Her defineres API'en.
@@ -59,43 +59,43 @@ app.use(morgan("combined"));
  * querien `SELECT 'Hello, World' as message`.
  */
 app.post("/data", async (req, res) => {
-  try {
-    // Lav query
-    const query = `SELECT continent, sum(deaths) as deaths, sum(damages) as damages FROM weather group by continent ORDER BY continent asc`;
-    queryData = await client.query(query);
-    // Giv svar tilbage til JavaScript
-    res.json({
-      "ok": true,
-      "data": queryData.rows,
-    })
-  } catch (error) {
-    // Hvis query fejler, fanges det her.
-    // Send fejlbesked tilbage til JavaScript
-    res.json({
-      "ok": false,
-      "message": error.message,
-    })
-  }
+    try {
+        // Lav query
+        const query = `SELECT continent, sum(deaths) as deaths, sum(damages) as damages FROM weather group by continent ORDER BY continent asc`;
+        queryData = await client.query(query);
+        // Giv svar tilbage til JavaScript
+        res.json({
+            ok: true,
+            data: queryData.rows,
+        });
+    } catch (error) {
+        // Hvis query fejler, fanges det her.
+        // Send fejlbesked tilbage til JavaScript
+        res.json({
+            ok: false,
+            message: error.message,
+        });
+    }
 });
 
 app.post("/type", async (req, res) => {
-  try {
-    // Lav query
-    const query = `SELECT continent, disaster_type, count(disaster_type) as count FROM weather group by continent, disaster_type ORDER BY continent asc, disaster_type asc`;
-    queryData = await client.query(query);
-    // Giv svar tilbage til JavaScript
-    res.json({
-      "ok": true,
-      "data": queryData.rows,
-    })
-  } catch (error) {
-    // Hvis query fejler, fanges det her.
-    // Send fejlbesked tilbage til JavaScript
-    res.json({
-      "ok": false,
-      "message": error.message,
-    })
-  }
+    try {
+        // Lav query
+        const query = `SELECT continent, disaster_type, count(disaster_type) as count FROM weather group by continent, disaster_type ORDER BY continent asc, disaster_type asc`;
+        queryData = await client.query(query);
+        // Giv svar tilbage til JavaScript
+        res.json({
+            ok: true,
+            data: queryData.rows,
+        });
+    } catch (error) {
+        // Hvis query fejler, fanges det her.
+        // Send fejlbesked tilbage til JavaScript
+        res.json({
+            ok: false,
+            message: error.message,
+        });
+    }
 });
 
 // Web-serveren startes.

@@ -82,6 +82,7 @@ function update(selectedVar) {
         method: "POST",
     }).then(function (response) {
         const data = response.data; // Hent data ud af response
+        console.log(data);
         d3.select("#deaths").select("span").attr("id", "deathsSpan").text(data[selectedVar].deaths).style("font-size", "45px");
 
         d3.select("#damages")
