@@ -2,34 +2,12 @@ const { Client } = require("pg");
 const express = require("express");
 const morgan = require("morgan"); // Some nice logging
 
-/**
- * Følgende parametre bruges til at forbinde til databasen.
- * PORT er den port som webserveren her kører på.
- * DB_USER er brugernavnet til databasen.
- * DB_HOST er serveren som databasen kører på. Enten localhost eller en anden server.
- * DB_NAME er det navn som databasen har.
- * DB_PW er password til DB_USER.
- * DB_PORT er porten til databasen. Det plejer at være 5432, så den behøver man nok ikke ændre.
- */
 const PORT = process.env.PORT || 8080;
 const DB_USER = process.env.DB_USER || "edymhxqp";
 const DB_HOST = process.env.DB_HOST || "abul.db.elephantsql.com";
 const DB_NAME = process.env.DB_NAME || "edymhxqp";
 const DB_PW = process.env.DB_PW || "JhNprfSRJ60oDMDygG_jAhyuRnIKIURb";
 const DB_PORT = process.env.DB_PORT || 5432;
-
-/**
- * I stedet for at ændre på DB-værdierne i koden herover, er det bedre at gøre det som
- * en del af den måde man kører programmet på. Hver DB-værdi kan sættes i terminalen
- * inden man kører programmet. Det gør man sådan her:
- *
- * $ export DB_NAME="kristians-database"
- *
- * Nu er DB_NAME sat til "kristians-database" når programmet kører, uden at man har
- * ændret i JavaScript-koden. Dette skal gøres hver gang du åbner en ny terminal.
- * Det skal helst gøres både for DB_NAME, DB_PW, DB_USER og DB_HOST.
- * PORT og DB_PORT plejer man ikke at ændre.
- */
 
 console.warn("Lige nu er databasenavn sat til:", DB_NAME);
 console.log("Postgres database:", DB_NAME);
