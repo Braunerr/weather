@@ -1,8 +1,8 @@
 // The map
 // The svg
 const svgMap = d3.select("#world"),
-    width = +svgMap.attr("width"),
-    height = +svgMap.attr("height");
+    widthMap = +svgMap.attr("width"),
+    heightMap = +svgMap.attr("height");
 
 // Map and projection
 const path = d3.geoPath();
@@ -10,7 +10,7 @@ const projection = d3
     .geoMercator()
     .scale(140)
     .center([0, 20])
-    .translate([width / 2, height / 2]);
+    .translate([widthMap / 2, heightMap / 2]);
 
 // Load external data and boot
 Promise.all([d3.json("continents.json")]).then(function (loadData) {
