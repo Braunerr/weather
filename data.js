@@ -75,5 +75,125 @@ app.post("/type", async (req, res) => {
     }
 });
 
+app.post("/asia", async (req, res) => {
+    try {
+        // Lav query
+        const query = `SELECT disaster_type, continent, year, COUNT(disaster_type)FROM weather WHERE continent ILIKE 'asia' and year > 1969 GROUP BY disaster_type, year, continent ORDER BY year ASC`;
+        queryData = await client.query(query);
+        // Giv svar tilbage til JavaScript
+        res.json({
+            ok: true,
+            data: queryData.rows,
+        });
+    } catch (error) {
+        // Hvis query fejler, fanges det her.
+        // Send fejlbesked tilbage til JavaScript
+        res.json({
+            ok: false,
+            message: error.message,
+        });
+    }
+});
+
+app.post("/africa", async (req, res) => {
+    try {
+        // Lav query
+        const query = `SELECT disaster_type, continent, year, COUNT(disaster_type)FROM weather WHERE continent ILIKE 'africa' and year > 1969 GROUP BY disaster_type, year, continent ORDER BY year ASC`;
+        queryData = await client.query(query);
+        // Giv svar tilbage til JavaScript
+        res.json({
+            ok: true,
+            data: queryData.rows,
+        });
+    } catch (error) {
+        // Hvis query fejler, fanges det her.
+        // Send fejlbesked tilbage til JavaScript
+        res.json({
+            ok: false,
+            message: error.message,
+        });
+    }
+});
+
+app.post("/oceania", async (req, res) => {
+    try {
+        // Lav query
+        const query = `SELECT disaster_type, continent, year, COUNT(disaster_type)FROM weather WHERE continent ILIKE 'oceania' and year > 1969 GROUP BY disaster_type, year, continent ORDER BY year ASC`;
+        queryData = await client.query(query);
+        // Giv svar tilbage til JavaScript
+        res.json({
+            ok: true,
+            data: queryData.rows,
+        });
+    } catch (error) {
+        // Hvis query fejler, fanges det her.
+        // Send fejlbesked tilbage til JavaScript
+        res.json({
+            ok: false,
+            message: error.message,
+        });
+    }
+});
+
+app.post("/europe", async (req, res) => {
+    try {
+        // Lav query
+        const query = `SELECT disaster_type, continent, year, COUNT(disaster_type)FROM weather WHERE continent ILIKE 'europe' and year > 1969 GROUP BY disaster_type, year, continent ORDER BY year ASC`;
+        queryData = await client.query(query);
+        // Giv svar tilbage til JavaScript
+        res.json({
+            ok: true,
+            data: queryData.rows,
+        });
+    } catch (error) {
+        // Hvis query fejler, fanges det her.
+        // Send fejlbesked tilbage til JavaScript
+        res.json({
+            ok: false,
+            message: error.message,
+        });
+    }
+});
+
+app.post("/north_america", async (req, res) => {
+    try {
+        // Lav query
+        const query = `SELECT disaster_type, continent, year, COUNT(disaster_type)FROM weather WHERE continent ILIKE 'north america' and year > 1969 GROUP BY disaster_type, year, continent ORDER BY year ASC`;
+        queryData = await client.query(query);
+        // Giv svar tilbage til JavaScript
+        res.json({
+            ok: true,
+            data: queryData.rows,
+        });
+    } catch (error) {
+        // Hvis query fejler, fanges det her.
+        // Send fejlbesked tilbage til JavaScript
+        res.json({
+            ok: false,
+            message: error.message,
+        });
+    }
+});
+
+app.post("/south_america", async (req, res) => {
+    try {
+        // Lav query
+        const query = `SELECT disaster_type, continent, year, COUNT(disaster_type)FROM weather WHERE continent ILIKE 'south america' and year > 1969 GROUP BY disaster_type, year, continent ORDER BY year ASC`;
+        queryData = await client.query(query);
+        // Giv svar tilbage til JavaScript
+        res.json({
+            ok: true,
+            data: queryData.rows,
+        });
+    } catch (error) {
+        // Hvis query fejler, fanges det her.
+        // Send fejlbesked tilbage til JavaScript
+        res.json({
+            ok: false,
+            message: error.message,
+        });
+    }
+});
+
 // Web-serveren startes.
 app.listen(PORT, () => console.log(`Serveren kører på http://localhost:${PORT}`));
