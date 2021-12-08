@@ -47,23 +47,13 @@ p {
     float: left;
 }
 
-#stats {
-    text-align: center;
-    float: right;
-    width: 500px;
-    padding-right: 100px;
-}
-
 #chart {
-    clear: right;
-}
-
-#deaths {
-    color: white;
-}
-
-#damages {
-    color: white;
+    float: right;
+    width: 400px;
+    margin-right: 150px;
+    margin-top: 20px;
+    background-color: #fff;
+    border-radius: 10px;
 }
 
 @keyframes landingButton {
