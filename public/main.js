@@ -28,7 +28,7 @@ Promise.all([d3.json("continents.json")]).then(function (loadData) {
         d3.select("#world").selectAll("*").transition().duration(200).style("stroke", "transparent");
         d3.select(this).transition().duration(200).style("stroke", "white");
         // Update chart with id
-        d3.select("#chart").selectAll("*").remove();
+        d3.select("#chart").selectAll("path").remove();
         update(this.id);
         console.log(this.id);
     };
@@ -55,8 +55,29 @@ Promise.all([d3.json("continents.json")]).then(function (loadData) {
 
 // set the dimensions and margins of the graph
 const margin = { top: 25, right: 15, bottom: 20, left: 30 },
-    width = 380 - margin.left - margin.right,
-    height = 100 - margin.top - margin.bottom;
+    width = 600 - margin.left - margin.right,
+    height = 600 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+const svg = d3
+    .select("#chart")
+    .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", `translate(${margin.left},${margin.top})`);
+
+// Add X axis
+const x = d3.scaleLinear().range([0, width]);
+const xAxis = d3.axisBottom().scale(x);
+svg.append("g").attr("transform", `translate(0, ${height})`).attr("class", "myXaxis");
+
+// Add Y axis
+const y = d3.scaleLinear().range([height, 0]);
+const yAxis = d3.axisLeft().scale(y);
+svg.append("g").attr("class", "myYaxis");
+
+let sumstat;
 
 function update(selectedVar) {
     // Parse the other Data
@@ -65,78 +86,47 @@ function update(selectedVar) {
     }).then(function (response) {
         const data = response.data;
 
-        console.log(data);
-
         // group the data: I want to draw one line per group
-        const sumstat = d3.group(data, (d) => d.disaster_type); // nest function allows to group the calculation per level of a factor
-        console.log(sumstat);
+        sumstat = d3.group(data, (d) => d.disaster_type); // nest function allows to group the calculation per level of a factor
 
-        // Add an svg element for each group. The will be one beside each other and will go on the next row when no more room available
-        const svg = d3
-            .select("#chart")
-            .selectAll("uniqueChart")
-            .data(sumstat)
-            .enter()
-            .append("svg")
-            .attr("width", width + margin.left + margin.right)
-            .attr("height", height + margin.top + margin.bottom)
-            .append("g")
-            .attr("transform", `translate(${margin.left},${margin.top})`);
+        console.log(data)
 
-        // Add X axis --> it is a date format
-        const x = d3
-            .scaleLinear()
-            .domain(
-                d3.extent(data, function (d) {
-                    return d.year;
-                })
-            )
-            .range([0, width]);
-        svg.append("g").attr("transform", `translate(0, ${height})`)
-        .call(d3.axisBottom(x).ticks(5));
+        x.domain(d3.extent(data, function(d) { return d.year; }));
+        svg.selectAll(".myXaxis")
+        .call(xAxis);
+        
+        y.domain([0, d3.max(data, function(d) { return d.count; })]);
+        svg.selectAll(".myYaxis").transition()
+        .duration(1000)
+        .call(yAxis);
 
-        //Add Y axis
-        const y = d3
-            .scaleLinear()
-            .domain([
-                0,
-                d3.max(data, function (d) {
-                    return +d.count;
-                }),
-            ])
-            .range([height, 0]);
-        svg.append("g")
-        .call(d3.axisLeft(y).ticks(2));
+        // color palette
+        const color = d3.scaleOrdinal().range(["#e41a1c", "#377eb8", "#4daf4a", "#984ea3", "#ff7f00", "#ffff33", "#a65628", "#f781bf", "#999999"]);
 
         // Draw the line
-        svg.append("path")
-            .attr("fill", "none")
-            .attr("stroke", "red")
-            .attr("stroke-width", 1.9)
+        svg.selectAll(".line")
+            .data(sumstat)
+            .join("path")
+            .transition()
+            .duration(1000)
             .attr("d", function (d) {
                 return d3
-                    .line()
-                    .x(function (d) {
-                        return x(d.year);
-                    })
-                    .y(function (d) {
-                        return y(+d.count);
-                    })(d[1]);
-            });
-
-        // Add titles
-        svg.append("text")
-            .attr("text-anchor", "start")
-            .attr("y", -7)
-            .attr("x", -25)
-            .text(function (d) {
-                return d[0];
+                .line()
+                .x(function (d) {
+                    return x(d.year);
+                })
+                .y(function (d) {
+                    return y(d.count);
+                })(d[1]);
             })
-            .style("fill", "red");
+            .attr("fill", "none")
+            .attr("stroke", function (d) {
+                return color(d[0]);
+            })
+            .attr("stroke-width", 1.5);
     });
 }
-
-update("0");
+update("1");
 
 /*
     // The chart
