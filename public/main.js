@@ -89,16 +89,22 @@ function update(selectedVar) {
         // group the data: I want to draw one line per group
         sumstat = d3.group(data, (d) => d.disaster_type); // nest function allows to group the calculation per level of a factor
 
-        console.log(data)
+        console.log(data);
 
-        x.domain(d3.extent(data, function(d) { return d.year; }));
-        svg.selectAll(".myXaxis")
-        .call(xAxis);
-        
-        y.domain([0, d3.max(data, function(d) { return d.count; })]);
-        svg.selectAll(".myYaxis").transition()
-        .duration(1000)
-        .call(yAxis);
+        x.domain(
+            d3.extent(data, function (d) {
+                return d.year;
+            })
+        );
+        svg.selectAll(".myXaxis").call(xAxis);
+
+        y.domain([
+            0,
+            d3.max(data, function (d) {
+                return +d.count;
+            })
+        ]);
+        svg.selectAll(".myYaxis").transition().duration(1000).call(yAxis);
 
         // color palette
         const color = d3.scaleOrdinal().range(["#e41a1c", "#377eb8", "#4daf4a", "#984ea3", "#ff7f00", "#ffff33", "#a65628", "#f781bf", "#999999"]);
@@ -111,13 +117,13 @@ function update(selectedVar) {
             .duration(1000)
             .attr("d", function (d) {
                 return d3
-                .line()
-                .x(function (d) {
-                    return x(d.year);
-                })
-                .y(function (d) {
-                    return y(d.count);
-                })(d[1]);
+                    .line()
+                    .x(function (d) {
+                        return x(d.year);
+                    })
+                    .y(function (d) {
+                        return y(d.count);
+                    })(d[1]);
             })
             .attr("fill", "none")
             .attr("stroke", function (d) {
