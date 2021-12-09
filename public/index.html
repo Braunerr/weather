@@ -9,21 +9,24 @@
   <title>Postgres node.js template med d3.js</title>
 
     <body>
-        <div id="landing">
-            <br />
-            <h1>Hvilke ekstreme vejr fænomener er hyppigst og hvilken konsekvens har de</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate et quasi nesciunt cum eveniet modi laboriosam iure voluptas molestiae itaque iste, praesentium eius dolorum vitae nulla, nobis dolores, voluptatibus deserunt.
-                <br>
-                <br>
-                Source: <a href="https://www.emdat.be/"></a> 
-            </p>
-            <a id="anchor" href="#world"><img src="arrow.png" alt="This should be an arrow" /></a>
-        </div>
-        <!-- Create an element where the map will take place -->
-        <svg id="world" width="900" height="725"></svg>
+        <div id="wrapper">
 
-        <!-- Create a div where the graph will take place -->
-        <div id="chart"></div>
+            <div id="landing">
+                <br />
+                <h1>Hvilke ekstreme vejr fænomener er hyppigst og hvilken konsekvens har de</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate et quasi nesciunt cum eveniet modi laboriosam iure voluptas molestiae itaque iste, praesentium eius dolorum vitae nulla, nobis dolores, voluptatibus deserunt.
+                    <br>
+                    <br>
+                    Source: <a href="https://www.emdat.be/"></a> 
+                </p>
+                <a id="anchor" href="#world"><img src="arrow.png" alt="This should be an arrow" /></a>
+            </div>
+            <!-- Create an element where the map will take place -->
+            <svg id="world" width="900" height="725"></svg>
+            
+            <!-- Create a div where the graph will take place -->
+            <div id="chart"></div>
+        </div>
         <script src="https://d3js.org/d3.v6.js"></script>
         <script src="main.js"></script>
     </body>

@@ -49,11 +49,10 @@ p {
 
 #chart {
     float: right;
-    width: 600px;
-    margin-right: 150px;
+    margin-right: 10px;
     margin-top: 20px;
-    background-color: #fff;
     border-radius: 10px;
+    width: 40%;
 }
 
 @keyframes landingButton {

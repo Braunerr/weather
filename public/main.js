@@ -55,8 +55,8 @@ Promise.all([d3.json("continents.json")]).then(function (loadData) {
 
 // set the dimensions and margins of the graph
 const margin = { top: 25, right: 15, bottom: 20, left: 30 },
-    width = 600 - margin.left - margin.right,
-    height = 600 - margin.top - margin.bottom;
+    width = 400 - margin.left - margin.right,
+    height = 300 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 const svg = d3
@@ -64,18 +64,19 @@ const svg = d3
     .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
+    .call(responsivefy)
     .append("g")
-    .attr("transform", `translate(${margin.left},${margin.top})`);
+    .attr("transform", `translate(${margin.left},${margin.top})`)
 
 // Add X axis
 const x = d3.scaleLinear().range([0, width]);
 const xAxis = d3.axisBottom().scale(x);
-svg.append("g").attr("transform", `translate(0, ${height})`).attr("class", "myXaxis");
+svg.append("g").attr("transform", `translate(0, ${height})`).attr("class", "myXaxis").style("color", "white");
 
 // Add Y axis
 const y = d3.scaleLinear().range([height, 0]);
 const yAxis = d3.axisLeft().scale(y);
-svg.append("g").attr("class", "myYaxis");
+svg.append("g").attr("class", "myYaxis").style("color", "white");
 
 let sumstat;
 
@@ -107,7 +108,7 @@ function update(selectedVar) {
         svg.selectAll(".myYaxis").transition().duration(1000).call(yAxis);
 
         // color palette
-        const color = d3.scaleOrdinal().range(["#e41a1c", "#377eb8", "#4daf4a", "#984ea3", "#ff7f00", "#ffff33", "#a65628", "#f781bf", "#999999"]);
+        const color = d3.scaleOrdinal().range(["#e41a1c", "#377eb8", "#4daf4a", "#984ea3", "#ff7f00"]);
 
         // Draw the line
         svg.selectAll(".line")
@@ -129,10 +130,50 @@ function update(selectedVar) {
             .attr("stroke", function (d) {
                 return color(d[0]);
             })
-            .attr("stroke-width", 1.5);
+            .attr("stroke-width", 3);
     });
 }
 update("1");
+
+function responsivefy(svg) {
+    // container will be the DOM element
+    // that the svg is appended to
+    // we then measure the container
+    // and find its aspect ratio
+    const container = d3.select(svg.node().parentNode),
+        width = parseInt(svg.style('width'), 10),
+        height = parseInt(svg.style('height'), 10),
+        aspect = width / height;
+   
+    // set viewBox attribute to the initial size
+    // control scaling with preserveAspectRatio
+    // resize svg on inital page load
+    svg.attr('viewBox', `0 0 ${width} ${height}`)
+        .attr('preserveAspectRatio', 'xMinYMid')
+        .call(resize);
+   
+    // add a listener so the chart will be resized
+    // when the window resizes
+    // multiple listeners for the same event type
+    // requires a namespace, i.e., 'click.foo'
+    // api docs: https://goo.gl/F3ZCFr
+    d3.select(window).on(
+        'resize.' + container.attr('id'), 
+        resize
+    );
+   
+    // this is the code that resizes the chart
+    // it will be called on load
+    // and in response to window resizes
+    // gets the width of the container
+    // and resizes the svg to fill it
+    // while maintaining a consistent aspect ratio
+    function resize() {
+        const w = parseInt(container.style('width'));
+        svg.attr('width', w);
+        svg.attr('height', Math.round(w / aspect));
+    }
+  }
 
 /*
     // The chart
