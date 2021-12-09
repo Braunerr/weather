@@ -35,10 +35,16 @@ app.use(morgan("combined"));
  * Her defineres API'en.
  * Man laver lige så mange endpoints man har lyst til. Jeg har lavet et enkelt til
  */
-app.post("/data", async (req, res) => {
+
+app.post("/data/1", async (req, res) => {
     try {
         // Lav query
-        const query = `SELECT continent, sum(deaths) as deaths, sum(damages) as damages FROM weather group by continent ORDER BY continent asc`;
+        const query = 
+        `SELECT disaster_type, year, count(disaster_type)
+        FROM weather 
+        WHERE continent ILIKE 'asia'  
+        group by disaster_type, year
+        ORDER BY disaster_type ASC, year ASC`;
         queryData = await client.query(query);
         // Giv svar tilbage til JavaScript
         res.json({
@@ -55,10 +61,15 @@ app.post("/data", async (req, res) => {
     }
 });
 
-app.post("/type", async (req, res) => {
+app.post("/data/0", async (req, res) => {
     try {
         // Lav query
-        const query = `SELECT continent, disaster_type, count(disaster_type) as count FROM weather group by continent, disaster_type ORDER BY continent asc, disaster_type asc`;
+        const query = 
+        `SELECT disaster_type, year, count(disaster_type)
+        FROM weather 
+        WHERE continent ILIKE 'africa'  
+        group by disaster_type, year
+        ORDER BY disaster_type ASC, year ASC`;
         queryData = await client.query(query);
         // Giv svar tilbage til JavaScript
         res.json({
@@ -75,10 +86,15 @@ app.post("/type", async (req, res) => {
     }
 });
 
-app.post("/asia", async (req, res) => {
+app.post("/data/4", async (req, res) => {
     try {
         // Lav query
-        const query = `SELECT disaster_type, continent, year, COUNT(disaster_type)FROM weather WHERE continent ILIKE 'asia' and year > 1969 GROUP BY disaster_type, year, continent ORDER BY year ASC`;
+        const query = 
+        `SELECT disaster_type, year, count(disaster_type)
+        FROM weather 
+        WHERE continent ILIKE 'oceania'  
+        group by disaster_type, year
+        ORDER BY disaster_type ASC, year ASC`;
         queryData = await client.query(query);
         // Giv svar tilbage til JavaScript
         res.json({
@@ -95,10 +111,15 @@ app.post("/asia", async (req, res) => {
     }
 });
 
-app.post("/africa", async (req, res) => {
+app.post("/data/2", async (req, res) => {
     try {
         // Lav query
-        const query = `SELECT disaster_type, continent, year, COUNT(disaster_type)FROM weather WHERE continent ILIKE 'africa' and year > 1969 GROUP BY disaster_type, year, continent ORDER BY year ASC`;
+        const query = 
+        `SELECT disaster_type, year, count(disaster_type)
+        FROM weather 
+        WHERE continent ILIKE 'europe'  
+        group by disaster_type, year
+        ORDER BY disaster_type ASC, year ASC`;
         queryData = await client.query(query);
         // Giv svar tilbage til JavaScript
         res.json({
@@ -115,10 +136,15 @@ app.post("/africa", async (req, res) => {
     }
 });
 
-app.post("/oceania", async (req, res) => {
+app.post("/data/3", async (req, res) => {
     try {
         // Lav query
-        const query = `SELECT disaster_type, continent, year, COUNT(disaster_type)FROM weather WHERE continent ILIKE 'oceania' and year > 1969 GROUP BY disaster_type, year, continent ORDER BY year ASC`;
+        const query = 
+        `SELECT disaster_type, year, count(disaster_type)
+        FROM weather 
+        WHERE continent ILIKE 'north america'  
+        group by disaster_type, year
+        ORDER BY disaster_type ASC, year ASC`;
         queryData = await client.query(query);
         // Giv svar tilbage til JavaScript
         res.json({
@@ -135,50 +161,15 @@ app.post("/oceania", async (req, res) => {
     }
 });
 
-app.post("/europe", async (req, res) => {
+app.post("/data/5", async (req, res) => {
     try {
         // Lav query
-        const query = `SELECT disaster_type, continent, year, COUNT(disaster_type)FROM weather WHERE continent ILIKE 'europe' and year > 1969 GROUP BY disaster_type, year, continent ORDER BY year ASC`;
-        queryData = await client.query(query);
-        // Giv svar tilbage til JavaScript
-        res.json({
-            ok: true,
-            data: queryData.rows,
-        });
-    } catch (error) {
-        // Hvis query fejler, fanges det her.
-        // Send fejlbesked tilbage til JavaScript
-        res.json({
-            ok: false,
-            message: error.message,
-        });
-    }
-});
-
-app.post("/north_america", async (req, res) => {
-    try {
-        // Lav query
-        const query = `SELECT disaster_type, continent, year, COUNT(disaster_type)FROM weather WHERE continent ILIKE 'north america' and year > 1969 GROUP BY disaster_type, year, continent ORDER BY year ASC`;
-        queryData = await client.query(query);
-        // Giv svar tilbage til JavaScript
-        res.json({
-            ok: true,
-            data: queryData.rows,
-        });
-    } catch (error) {
-        // Hvis query fejler, fanges det her.
-        // Send fejlbesked tilbage til JavaScript
-        res.json({
-            ok: false,
-            message: error.message,
-        });
-    }
-});
-
-app.post("/south_america", async (req, res) => {
-    try {
-        // Lav query
-        const query = `SELECT disaster_type, continent, year, COUNT(disaster_type)FROM weather WHERE continent ILIKE 'south america' and year > 1969 GROUP BY disaster_type, year, continent ORDER BY year ASC`;
+        const query = 
+        `SELECT disaster_type, year, count(disaster_type)
+        FROM weather 
+        WHERE continent ILIKE 'south america'  
+        group by disaster_type, year
+        ORDER BY disaster_type ASC, year ASC`;
         queryData = await client.query(query);
         // Giv svar tilbage til JavaScript
         res.json({
