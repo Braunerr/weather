@@ -8,9 +8,9 @@ const svgMap = d3.select("#world"),
 const path = d3.geoPath();
 const projection = d3
     .geoMercator()
-    .scale(140)
+    .scale(130)
     .center([0, 20])
-    .translate([widthMap / 2, heightMap / 2]);
+    .translate([widthMap / 2.2, heightMap / 2]);
 
 // Load external data and boot
 Promise.all([d3.json("continents.json")]).then(function (loadData) {
@@ -55,8 +55,8 @@ Promise.all([d3.json("continents.json")]).then(function (loadData) {
 
 // set the dimensions and margins of the graph
 const margin = { top: 25, right: 15, bottom: 20, left: 30 },
-    width = 600 - margin.left - margin.right,
-    height = 600 - margin.top - margin.bottom;
+    width = 500 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 const svg = d3
@@ -70,12 +70,13 @@ const svg = d3
 // Add X axis
 const x = d3.scaleLinear().range([0, width]);
 const xAxis = d3.axisBottom().scale(x);
-svg.append("g").attr("transform", `translate(0, ${height})`).attr("class", "myXaxis");
+svg.append("g").attr("transform", `translate(0, ${height})`).attr("class", "myXaxis").style("color", "white");
 
 // Add Y axis
 const y = d3.scaleLinear().range([height, 0]);
 const yAxis = d3.axisLeft().scale(y);
-svg.append("g").attr("class", "myYaxis");
+svg.append("g").attr("class", "myYaxis").style("color", "white");
+
 
 let sumstat;
 

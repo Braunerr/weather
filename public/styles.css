@@ -49,10 +49,10 @@ p {
 
 #chart {
     float: right;
-    width: 600px;
-    margin-right: 150px;
+    width: 500px;
+    margin-right: 10px;
     margin-top: 20px;
-    background-color: #fff;
+    background-color: #2d3139;
     border-radius: 10px;
 }
 
