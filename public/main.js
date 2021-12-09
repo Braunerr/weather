@@ -54,7 +54,7 @@ Promise.all([d3.json("continents.json")]).then(function (loadData) {
 });
 
 // set the dimensions and margins of the graph
-const margin = { top: 10, right: 0, bottom: 30, left: 50 },
+const margin = { top: 25, right: 15, bottom: 20, left: 30 },
     width = 380 - margin.left - margin.right,
     height = 100 - margin.top - margin.bottom;
 
@@ -92,7 +92,8 @@ function update(selectedVar) {
                 })
             )
             .range([0, width]);
-        svg.append("g").attr("transform", `translate(0, ${height})`);
+        svg.append("g").attr("transform", `translate(0, ${height})`)
+        .call(d3.axisBottom(x).ticks(5));
 
         //Add Y axis
         const y = d3
@@ -104,7 +105,8 @@ function update(selectedVar) {
                 }),
             ])
             .range([height, 0]);
-        svg.append("g");
+        svg.append("g")
+        .call(d3.axisLeft(y).ticks(2));
 
         // Draw the line
         svg.append("path")
@@ -125,8 +127,8 @@ function update(selectedVar) {
         // Add titles
         svg.append("text")
             .attr("text-anchor", "start")
-            .attr("y", 10)
-            .attr("x", -40)
+            .attr("y", -7)
+            .attr("x", -25)
             .text(function (d) {
                 return d[0];
             })
