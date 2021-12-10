@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: "Lato", sans-serif;
     margin: 0;
@@ -15,7 +19,7 @@ h1 {
     left: 50%;
     margin-left: -325px;
     width: 750px;
-    
+
     font-size: 40px;
     text-align: center;
     color: #07b8bf;
@@ -27,7 +31,7 @@ p {
     margin-left: -325px;
     top: 160px;
     width: 750px;
-    
+
     font-size: 20px;
     text-align: center;
     color: #fff;
@@ -44,15 +48,16 @@ p {
 }
 
 #world {
+    width: 49%;
     float: left;
 }
 
 #chart {
-    float: right;
+    width: 49%;
+    float: left;
     margin-right: 10px;
     margin-top: 20px;
     border-radius: 10px;
-    width: 40%;
 }
 
 @keyframes landingButton {
