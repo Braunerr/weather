@@ -114,8 +114,11 @@ function update(selectedVar) {
         svg.selectAll(".line")
             .data(typer)
             .join("path")
+            .on("mouseover", lineMouseOver)
+            .on("mouseleave", lineMouseLeave)
             .transition()
             .duration(1000)
+            .attr("class", "myLine")
             .attr("d", function (d) {
                 return d3
                     .line()
@@ -130,11 +133,21 @@ function update(selectedVar) {
             .attr("stroke", function (d) {
                 return color(d[0]);
             })
-            .attr("stroke-width", 2.5);
+            .attr("stroke-width", 2.5)
+            .attr("shape-rendering", "geometricPrecision");
     });
 }
 update("1");
 
+//Show the tooltip on the hovered over slice
+function lineMouseOver() {
+    svg.selectAll(".myLine").transition().duration(200).style("opacity", 0.2);
+    d3.select(this).transition().duration(200).style("opacity", 1);
+}
+
+function lineMouseLeave() {
+    svg.selectAll(".myLine").transition().duration(200).style("opacity", 1);				
+}
 function responsivefy(svg) {
     // container will be the DOM element
     // that the svg is appended to
