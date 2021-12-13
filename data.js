@@ -1,6 +1,6 @@
 const { Client } = require("pg");
 const express = require("express");
-const morgan = require("morgan"); // Some nice logging
+const morgan = require("morgan");
 
 const PORT = process.env.PORT || 8080;
 const DB_USER = process.env.DB_USER || "edymhxqp";
@@ -14,8 +14,7 @@ console.log("Postgres database:", DB_NAME);
 console.log("Postgres user:", DB_USER);
 
 /*
- * Herunder laves web-serveren. Den indeholder din html (fra public-folderen)
- * og API'en så der er forbindelse videre til databasen fra JavaScript. Det er "to i en".
+ * Herunder laves web-serveren
  */
 const app = express();
 const client = new Client({
@@ -33,37 +32,10 @@ app.use(morgan("combined"));
 
 /*
  * Her defineres API'en.
- * Man laver lige så mange endpoints man har lyst til. Jeg har lavet et enkelt til
  */
-
-app.post("/data/1", async (req, res) => {
-    try {
-        // Lav query
-        const query = 
-        `SELECT disaster_type, year, count(disaster_type)
-        FROM weather 
-        WHERE continent ILIKE 'asia'  
-        group by disaster_type, year
-        ORDER BY disaster_type ASC, year ASC`;
-        queryData = await client.query(query);
-        // Giv svar tilbage til JavaScript
-        res.json({
-            ok: true,
-            data: queryData.rows,
-        });
-    } catch (error) {
-        // Hvis query fejler, fanges det her.
-        // Send fejlbesked tilbage til JavaScript
-        res.json({
-            ok: false,
-            message: error.message,
-        });
-    }
-});
 
 app.post("/data/0", async (req, res) => {
     try {
-        // Lav query
         const query = 
         `SELECT disaster_type, year, count(disaster_type)
         FROM weather 
@@ -71,14 +43,13 @@ app.post("/data/0", async (req, res) => {
         group by disaster_type, year
         ORDER BY disaster_type ASC, year ASC`;
         queryData = await client.query(query);
-        // Giv svar tilbage til JavaScript
+
         res.json({
             ok: true,
             data: queryData.rows,
         });
     } catch (error) {
-        // Hvis query fejler, fanges det her.
-        // Send fejlbesked tilbage til JavaScript
+
         res.json({
             ok: false,
             message: error.message,
@@ -86,24 +57,22 @@ app.post("/data/0", async (req, res) => {
     }
 });
 
-app.post("/data/4", async (req, res) => {
+app.post("/data/1", async (req, res) => {
     try {
-        // Lav query
         const query = 
         `SELECT disaster_type, year, count(disaster_type)
         FROM weather 
-        WHERE continent ILIKE 'oceania'  
+        WHERE continent ILIKE 'asia'  
         group by disaster_type, year
         ORDER BY disaster_type ASC, year ASC`;
         queryData = await client.query(query);
-        // Giv svar tilbage til JavaScript
+
         res.json({
             ok: true,
             data: queryData.rows,
         });
     } catch (error) {
-        // Hvis query fejler, fanges det her.
-        // Send fejlbesked tilbage til JavaScript
+
         res.json({
             ok: false,
             message: error.message,
@@ -113,7 +82,6 @@ app.post("/data/4", async (req, res) => {
 
 app.post("/data/2", async (req, res) => {
     try {
-        // Lav query
         const query = 
         `SELECT disaster_type, year, count(disaster_type)
         FROM weather 
@@ -121,14 +89,13 @@ app.post("/data/2", async (req, res) => {
         group by disaster_type, year
         ORDER BY disaster_type ASC, year ASC`;
         queryData = await client.query(query);
-        // Giv svar tilbage til JavaScript
+        
         res.json({
             ok: true,
             data: queryData.rows,
         });
     } catch (error) {
-        // Hvis query fejler, fanges det her.
-        // Send fejlbesked tilbage til JavaScript
+        
         res.json({
             ok: false,
             message: error.message,
@@ -138,7 +105,6 @@ app.post("/data/2", async (req, res) => {
 
 app.post("/data/3", async (req, res) => {
     try {
-        // Lav query
         const query = 
         `SELECT disaster_type, year, count(disaster_type)
         FROM weather 
@@ -146,14 +112,36 @@ app.post("/data/3", async (req, res) => {
         group by disaster_type, year
         ORDER BY disaster_type ASC, year ASC`;
         queryData = await client.query(query);
-        // Giv svar tilbage til JavaScript
+        
         res.json({
             ok: true,
             data: queryData.rows,
         });
     } catch (error) {
-        // Hvis query fejler, fanges det her.
-        // Send fejlbesked tilbage til JavaScript
+        
+        res.json({
+            ok: false,
+            message: error.message,
+        });
+    }
+});
+
+app.post("/data/4", async (req, res) => {
+    try {
+        const query = 
+        `SELECT disaster_type, year, count(disaster_type)
+        FROM weather 
+        WHERE continent ILIKE 'oceania'  
+        group by disaster_type, year
+        ORDER BY disaster_type ASC, year ASC`;
+        queryData = await client.query(query);
+
+        res.json({
+            ok: true,
+            data: queryData.rows,
+        });
+    } catch (error) {
+        
         res.json({
             ok: false,
             message: error.message,
@@ -163,7 +151,6 @@ app.post("/data/3", async (req, res) => {
 
 app.post("/data/5", async (req, res) => {
     try {
-        // Lav query
         const query = 
         `SELECT disaster_type, year, count(disaster_type)
         FROM weather 
@@ -171,14 +158,13 @@ app.post("/data/5", async (req, res) => {
         group by disaster_type, year
         ORDER BY disaster_type ASC, year ASC`;
         queryData = await client.query(query);
-        // Giv svar tilbage til JavaScript
+        
         res.json({
             ok: true,
             data: queryData.rows,
         });
     } catch (error) {
-        // Hvis query fejler, fanges det her.
-        // Send fejlbesked tilbage til JavaScript
+        
         res.json({
             ok: false,
             message: error.message,
