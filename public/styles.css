@@ -48,21 +48,21 @@ p {
 }
 
 #world {
-    width: 49%;
+    width: 48%;
     float: left;
 }
 
 #chart {
-    width: 49%;
+    width: 48%;
     float: left;
 }
 #legend {
-    width: 49%;
+    width: 48%;
     float: right;
 }
 
 li {
-    float: right;
+    float: left;
     margin-right: 30px;
 }
 

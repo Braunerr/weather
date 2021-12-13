@@ -9,9 +9,9 @@ svgMap.call(responsivefy)
 const path = d3.geoPath();
 const projection = d3
     .geoMercator()
-    .scale(125)
+    .scale(115)
     .center([0, 20])
-    .translate([widthMap / 2, heightMap / 2])
+    .translate([widthMap / 2.2, heightMap / 2])
 
 // Load external data and boot
 Promise.all([d3.json("continents.json")]).then(function (loadData) {
