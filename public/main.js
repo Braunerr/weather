@@ -77,7 +77,7 @@ svg.append("g")
 .style("color", "white")
 // text label for the x axis
 svg.append("text")             
-.attr("y", 10)
+.attr("y", 0)
 .attr("x", 100)
 .style("text-anchor", "middle")
 .style("fill", "white")
