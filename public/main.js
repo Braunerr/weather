@@ -46,7 +46,7 @@ Promise.all([d3.json("continents.json")]).then(function (loadData) {
             return d.properties.CONTINENT;
         })
         .style("stroke", "transparent")
-        .style("fill", "#07b8bf")
+        .style("fill", "#0AEAF2")
         .style("opacity", 0.8)
         .style("cursor", "pointer")
         .on("mouseover", mouseOver)
