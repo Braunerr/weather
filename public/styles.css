@@ -61,10 +61,12 @@ p {
 #chart {
     width: 48%;
     float: left;
+    margin-bottom: 50px;
 }
 #legend {
     width: 48%;
     float: right;
+    margin-top: 50px;
 }
 
 li {
