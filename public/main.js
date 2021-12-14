@@ -46,7 +46,7 @@ Promise.all([d3.json("continents.json")]).then(function (loadData) {
             return d.properties.CONTINENT;
         })
         .style("stroke", "transparent")
-        .style("fill", "#07b8bf")
+        .style("fill", "#0AEAF2")
         .style("opacity", 0.8)
         .style("cursor", "pointer")
         .on("mouseover", mouseOver)
@@ -71,12 +71,28 @@ const svg = d3
 // Add X axis
 const x = d3.scaleLinear().range([0, width]);
 const xAxis = d3.axisBottom().scale(x).tickFormat(d3.format("d"));
-svg.append("g").attr("transform", `translate(0, ${height})`).attr("class", "myXaxis").style("color", "white");
+svg.append("g")
+.attr("transform", `translate(0, ${height})`)
+.attr("class", "myXaxis")
+.style("color", "white")
+// text label for the x axis
+svg.append("text")             
+.attr("y", 0)
+.attr("x", 100)
+.style("text-anchor", "middle")
+.style("fill", "white")
+.text("phenomena per Year");
+
 
 // Add Y axis
 const y = d3.scaleLinear().range([height, 0]);
 const yAxis = d3.axisLeft().scale(y);
-svg.append("g").attr("class", "myYaxis").style("color", "white");
+svg.append("g")
+.attr("class", "myYaxis")
+.style("color", "white")
+
+
+
 
 // This allows to find the closest X index of the mouse:
 let bisect = d3.bisector(function (d) {

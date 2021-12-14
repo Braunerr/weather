@@ -6,7 +6,7 @@ body {
     font-family: "Lato", sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #333333;
+    background-color: #002C35;
 }
 
 #landing {
@@ -19,17 +19,78 @@ h1 {
     left: 50%;
     margin-left: -375px;
     width: 750px;
+    margin-top: 150px;
 
     font-size: 40px;
     text-align: center;
-    color: #07b8bf;
+    color: #0AEAF2;
+}
+
+h2 {
+    position: absolute;
+    left: 50%;
+    margin-left: -375px;
+    width: 750px;
+    margin-top: 50px;
+
+    font-size: 40px;
+    text-align: center;
+    color: #0AEAF2;
+}
+
+h3 {
+    position: absolute;
+    left: 50%;
+    margin-left: -375px;
+    width: 750px;
+    margin-top: 320px;
+
+    font-size: 25px;
+    text-align: center;
+    color: #0AEAF2;
+}
+
+h4 {
+    position: absolute;
+    left: 50%;
+    margin-left: -375px;
+    width: 750px;
+    margin-top: 120px;
+
+    font-size: 25px;
+    text-align: center;
+    color: #0AEAF2;
 }
 
 p {
     position: absolute;
     left: 50%;
     margin-left: -375px;
-    top: 160px;
+    top: 300px;
+    width: 750px;
+
+    font-size: 20px;
+    text-align: center;
+    color: #fff;
+}
+
+p1 {
+    position: absolute;
+    left: 50%;
+    margin-left: -375px;
+    top: 150px;
+    width: 750px;
+
+    font-size: 20px;
+    text-align: center;
+    color: #fff;
+}
+
+p2 {
+    position: absolute;
+    left: 50%;
+    margin-left: -375px;
+    top: 350px;
     width: 750px;
 
     font-size: 20px;
@@ -39,7 +100,7 @@ p {
 
 #link {
     text-decoration: none;
-    color: #07b8bf;
+    color: #0AEAF2;
 }
 
 #anchor {
@@ -55,15 +116,18 @@ p {
 #world {
     width: 48%;
     float: left;
+    margin-top: 50px;
 }
 
 #chart {
     width: 48%;
     float: left;
+    margin-top: 50px;
 }
 #legend {
     width: 48%;
     float: right;
+    margin-top: 50px;
 }
 
 li {
@@ -84,3 +148,5 @@ li {
         bottom: 60px;
     }
 }
+
+
