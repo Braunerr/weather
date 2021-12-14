@@ -78,7 +78,21 @@ const y = d3.scaleLinear().range([height, 0]);
 const yAxis = d3.axisLeft().scale(y);
 svg.append("g").attr("class", "myYaxis").style("color", "white");
 
+// This allows to find the closest X index of the mouse:
+let bisect = d3.bisector(function (d) {
+    return d.year;
+}).left;
+
+// Create the circle that travels along the curve of chart
+let focus = svg.append("g").append("circle").style("fill", "none").attr("stroke", "black").attr("r", 8.5).style("opacity", 0);
+
+// Create the text that travels along the curve of chart
+let focusText = svg.append("g").append("text").style("opacity", 0).attr("text-anchor", "left").attr("alignment-baseline", "middle");
+
+let n;
+
 function update(selectedVar) {
+    let lineId = -1; // Line id
     // Parse the Data
     d3.json(`/data/${selectedVar}`, {
         method: "POST",
@@ -107,14 +121,33 @@ function update(selectedVar) {
 
         const color = d3.scaleOrdinal().range(["#e41a1c", "#377eb8", "#4daf4a", "#984ea3", "#ff7f00"]);
 
+        svg.append("rect").style("fill", "none").style("pointer-events", "all").attr("width", width).attr("height", height);
+
         svg.selectAll(".line")
             .data(typer)
             .join("path")
             .on("mouseover", lineMouseOver)
+            .on("mousemove", (event) => {
+                
+                let x0 = x.invert(d3.pointer(event)[0]);
+                let i = bisect(typer.get(n), x0, 1);
+                selectedData = typer.get(n)[i];
+                console.log(i);
+                focus.attr("cx", x(selectedData.year)).attr("cy", y(selectedData.count));
+                focusText
+                    .html(selectedData.count)
+                    .attr("x", x(selectedData.year) + 15)
+                    .attr("y", y(selectedData.count));
+            })
             .on("mouseleave", lineMouseLeave)
             .transition()
             .duration(1000)
             .attr("class", "myLine")
+            .attr("id", function(){
+                let id = ["Drought", "Extreme temperature", "Flood", "Storm", "Wildfire"]
+                lineId++;
+                return id[lineId];
+            })
             .attr("d", function (d) {
                 return d3
                     .line()
@@ -127,9 +160,9 @@ function update(selectedVar) {
             })
             .attr("fill", "none")
             .attr("stroke", function (d) {
-                return color(d[0]);
+                return color(d);
             })
-            .attr("stroke-width", 2.5)
+            .attr("stroke-width", 2)
             .attr("shape-rendering", "geometricPrecision");
     });
 }
@@ -137,12 +170,18 @@ function update(selectedVar) {
 update("1");
 
 function lineMouseOver() {
+    n = this.id;
+    console.log(this.id)
     svg.selectAll(".myLine").transition().duration(200).style("opacity", 0.2);
     d3.select(this).transition().duration(200).style("opacity", 1);
+    focus.style("opacity", 1);
+    focusText.style("opacity", 1);
 }
 
 function lineMouseLeave() {
     svg.selectAll(".myLine").transition().duration(200).style("opacity", 1);
+    focus.style("opacity", 0);
+    focusText.style("opacity", 0);
 }
 
 function responsivefy(svg) {

@@ -6,7 +6,7 @@ body {
     font-family: "Lato", sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #050607;
+    background-color: #333333;
 }
 
 #landing {
@@ -70,7 +70,7 @@ li {
     font-size: 20px;
     font-weight: bold;
     float: left;
-    margin-right: 30px;
+    margin-right: 35px;
 }
 
 @keyframes landingButton {
