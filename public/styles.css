@@ -37,6 +37,11 @@ p {
     color: #fff;
 }
 
+#link {
+    text-decoration: none;
+    color: #07b8bf;
+}
+
 #anchor {
     position: absolute;
     left: 50%;
@@ -62,6 +67,8 @@ p {
 }
 
 li {
+    font-size: 20px;
+    font-weight: bold;
     float: left;
     margin-right: 30px;
 }
