@@ -11,6 +11,8 @@ body {
 
 .btn:hover{
     cursor: pointer;
+    transition: all 0.5s;
+    background: #0d7d81;
 }
 
 .btn {
