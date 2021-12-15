@@ -9,6 +9,20 @@ body {
     background-color: #002C35;
 }
 
+.btn:hover{
+    cursor: pointer;
+}
+
+.btn {
+    border: none;
+    border-radius: 28px;
+    color: #ffffff;
+    font-size: 20px;
+    background: #07a5aa;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+  }
+
 #landing {
     height: 100%;
     width: 100%;
