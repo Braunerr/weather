@@ -75,10 +75,10 @@ svg.append("g")
 .attr("transform", `translate(0, ${height})`)
 .attr("class", "myXaxis")
 .style("color", "white")
-// text label for the x axis
+// Title
 svg.append("text")             
 .attr("y", -7)
-.attr("x", 70)
+.attr("x", 50)
 .style("text-anchor", "middle")
 .style("fill", "white")
 .text("Phenomena Per Year");
@@ -91,21 +91,21 @@ svg.append("g")
 .attr("class", "myYaxis")
 .style("color", "white")
 
-
-
-
-// This allows to find the closest X index of the mouse:
+// Find the closest X index of the mouse:
 let bisect = d3.bisector(function (d) {
     return d.year;
 }).left;
 
-// Create the circle that travels along the curve of chart
-let focus = svg.append("g").append("circle").style("fill", "none").attr("stroke", "black").attr("r", 5.5).style("opacity", 0).style("fill", "white");
+// Create the mouse over circle
+let focus = svg.append("g").append("circle").style("fill", "none").attr("r", 5).style("opacity", 0).style("fill", "white");
 
-// Create the text that travels along the curve of chart
-let focusText = svg.append("g").append("text").style("opacity", 0).attr("text-anchor", "left").attr("alignment-baseline", "middle").style("fill", "white");
+// Create the mouse over text
+let focusText = d3.select("#chart").select("svg").append("g").append("text").style("opacity", 0).attr("text-anchor", "left").attr("alignment-baseline", "middle").style("fill", "white");
 
-let n;
+// Create rectangle to get mouse position from
+svg.append("rect").style("fill", "none").style("pointer-events", "all").attr("width", width).attr("height", height);
+
+let line;
 
 function update(selectedVar) {
     let lineId = -1; // Line id
@@ -117,8 +117,6 @@ function update(selectedVar) {
 
         // Group the data
         const typer = d3.group(data, (d) => d.disaster_type);
-
-        console.log(data);
 
         x.domain(
             d3.extent(data, function (d) {
@@ -137,29 +135,26 @@ function update(selectedVar) {
 
         const color = d3.scaleOrdinal().range(["#e41a1c", "#377eb8", "#4daf4a", "#984ea3", "#ff7f00"]);
 
-        svg.append("rect").style("fill", "none").style("pointer-events", "all").attr("width", width).attr("height", height);
-
         svg.selectAll(".line")
             .data(typer)
             .join("path")
             .on("mouseover", lineMouseOver)
             .on("mousemove", (event) => {
-                
                 let x0 = x.invert(d3.pointer(event)[0]);
-                let i = bisect(typer.get(n), x0, 1);
-                selectedData = typer.get(n)[i];
-                console.log(i);
+                let i = bisect(typer.get(line), x0, 0);
+                selectedData = typer.get(line)[i];
                 focus.attr("cx", x(selectedData.year)).attr("cy", y(selectedData.count));
                 focusText
                     .html(selectedData.count)
-                    .attr("x", x(selectedData.year) + 15)
-                    .attr("y", y(selectedData.count));
+                    .attr("x", x(selectedData.year) + 21)
+                    .attr("y", y(selectedData.count) + 10);
             })
             .on("mouseleave", lineMouseLeave)
             .transition()
             .duration(1000)
             .attr("class", "myLine")
             .attr("id", function(){
+                // Use array to create the id of the line
                 let id = ["Drought", "Extreme temperature", "Flood", "Storm", "Wildfire"]
                 lineId++;
                 return id[lineId];
@@ -178,16 +173,15 @@ function update(selectedVar) {
             .attr("stroke", function (d) {
                 return color(d);
             })
-            .attr("stroke-width", 2)
-            .attr("shape-rendering", "geometricPrecision");
+            .attr("stroke-width", 3);
     });
 }
 
 update("1");
 
 function lineMouseOver() {
-    n = this.id;
-    console.log(this.id)
+    // Update n to be the current line
+    line = this.id;
     svg.selectAll(".myLine").transition().duration(200).style("opacity", 0.2);
     d3.select(this).transition().duration(200).style("opacity", 1);
     focus.style("opacity", 1);
@@ -199,6 +193,7 @@ function lineMouseLeave() {
     focus.style("opacity", 0);
     focusText.style("opacity", 0);
 }
+
 
 function responsivefy(svg) {
     const container = d3.select(svg.node().parentNode),
