@@ -77,11 +77,11 @@ svg.append("g")
 .style("color", "white")
 // text label for the x axis
 svg.append("text")             
-.attr("y", -10)
+.attr("y", -7)
 .attr("x", 70)
 .style("text-anchor", "middle")
 .style("fill", "white")
-.text("phenomena per Year");
+.text("Phenomena Per Year");
 
 
 // Add Y axis
