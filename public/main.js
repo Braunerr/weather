@@ -100,10 +100,10 @@ let bisect = d3.bisector(function (d) {
 }).left;
 
 // Create the circle that travels along the curve of chart
-let focus = svg.append("g").append("circle").style("fill", "none").attr("stroke", "black").attr("r", 8.5).style("opacity", 0);
+let focus = svg.append("g").append("circle").style("fill", "none").attr("stroke", "black").attr("r", 5.5).style("opacity", 0).style("fill", "white");
 
 // Create the text that travels along the curve of chart
-let focusText = svg.append("g").append("text").style("opacity", 0).attr("text-anchor", "left").attr("alignment-baseline", "middle");
+let focusText = svg.append("g").append("text").style("opacity", 0).attr("text-anchor", "left").attr("alignment-baseline", "middle").style("fill", "white");
 
 let n;
 
