@@ -9,10 +9,6 @@ const DB_NAME = process.env.DB_NAME;
 const DB_PW = process.env.DB_PW;
 const DB_PORT = process.env.DB_PORT || 5432;
 
-console.warn("Lige nu er databasenavn sat til:", DB_NAME);
-console.log("Postgres database:", DB_NAME);
-console.log("Postgres user:", DB_USER);
-
 // Herunder laves web-serveren
 const app = express();
 const client = new Client({
@@ -28,10 +24,9 @@ app.use(express.text());
 app.use(express.static("public"));
 app.use(morgan("combined"));
 
-/*
- * Her defineres API'en.
- */
+// Her defineres API'en.
 
+// Africa
 app.post("/data/0", async (req, res) => {
     try {
         const query = 
@@ -55,6 +50,7 @@ app.post("/data/0", async (req, res) => {
     }
 });
 
+// Asia
 app.post("/data/1", async (req, res) => {
     try {
         const query = 
@@ -78,6 +74,7 @@ app.post("/data/1", async (req, res) => {
     }
 });
 
+// Europe
 app.post("/data/2", async (req, res) => {
     try {
         const query = 
@@ -101,6 +98,7 @@ app.post("/data/2", async (req, res) => {
     }
 });
 
+//North America
 app.post("/data/3", async (req, res) => {
     try {
         const query = 
@@ -124,6 +122,7 @@ app.post("/data/3", async (req, res) => {
     }
 });
 
+// Oceania
 app.post("/data/4", async (req, res) => {
     try {
         const query = 
@@ -147,6 +146,7 @@ app.post("/data/4", async (req, res) => {
     }
 });
 
+// South America
 app.post("/data/5", async (req, res) => {
     try {
         const query = 
