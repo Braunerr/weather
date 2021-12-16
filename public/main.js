@@ -77,21 +77,22 @@ const svg = d3
     .call(responsivefy)
     .append("g")
     .attr("transform", `translate(${margin.left},${margin.top})`);
+    
+// Title
+svg.append("text").attr("y", -7).attr("id", "title").style("text-anchor", "left").style("fill", "white");
 
 // Add X axis
 const x = d3.scaleLinear().range([0, width]);
 const xAxis = d3.axisBottom().scale(x).tickFormat(d3.format("d"));
 svg.append("g").attr("transform", `translate(0, ${height})`).attr("class", "myXaxis").style("color", "white");
 
-// Title
-svg.append("text").attr("y", -7).attr("id", "title").style("text-anchor", "left").style("fill", "white");
 
 // Add Y axis
 const y = d3.scaleLinear().range([height, 0]);
 const yAxis = d3.axisLeft().scale(y);
 svg.append("g").attr("class", "myYaxis").style("color", "white");
 
-// Find the closest X index of the mouse:
+// Find the closest X index of the mouse
 let bisect = d3.bisector(function (d) {
     return d.year;
 }).left;
@@ -105,6 +106,7 @@ let focusText = d3.select("#chart").select("svg").append("g").append("text").sty
 // Create rectangle to get mouse position from
 svg.append("rect").style("fill", "none").style("pointer-events", "all").attr("width", width).attr("height", height);
 
+// Initialize line variable to be used later
 let line;
 
 function update(selectedVar) {
