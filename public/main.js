@@ -9,7 +9,7 @@ const svgMap = d3
     .select("#world")
     .append("svg")
     .attr("width", widthMap + marginMap.left + marginMap.right)
-    .attr("height", heightMap + marginMap.top + marginMap.bottom)
+    .attr("height", heightMap + marginMap.top + marginMap.bottom);
 
 // Map and projection
 svgMap.call(responsivefy);
@@ -35,11 +35,11 @@ Promise.all([d3.json("continents.json")]).then(function (loadData) {
     function mouseClick() {
         d3.select("#world").selectAll("*").transition().duration(200).style("stroke", "transparent");
         d3.select(this).transition().duration(200).style("stroke", "white");
+        // Remove the current chart before creating a new one
         d3.select("#chart").selectAll("path").remove();
         // Update chart with id
         update(this.id);
-        console.log(this.id);
-        svg.select("#title").text("Phenoma Per Year - " + continents[this.id])
+        svg.select("#title").text("Phenoma Per Year - " + continents[this.id]);
     }
 
     // Draw the map
@@ -82,13 +82,9 @@ const svg = d3
 const x = d3.scaleLinear().range([0, width]);
 const xAxis = d3.axisBottom().scale(x).tickFormat(d3.format("d"));
 svg.append("g").attr("transform", `translate(0, ${height})`).attr("class", "myXaxis").style("color", "white");
-// Title
-svg.append("text")             
-.attr("y", -7)
-.attr("id", "title")
-.style("text-anchor", "left")
-.style("fill", "white");
 
+// Title
+svg.append("text").attr("y", -7).attr("id", "title").style("text-anchor", "left").style("fill", "white");
 
 // Add Y axis
 const y = d3.scaleLinear().range([height, 0]);
@@ -112,7 +108,7 @@ svg.append("rect").style("fill", "none").style("pointer-events", "all").attr("wi
 let line;
 
 function update(selectedVar) {
-    svg.select("#title").text("Phenoma Per Year - Asia")
+    svg.select("#title").text("Phenoma Per Year - Asia");
     let lineId = -1; // Line id
     // Parse the Data
     d3.json(`/data/${selectedVar}`, {
@@ -127,9 +123,9 @@ function update(selectedVar) {
             d3.extent(data, function (d) {
                 return d.year;
             })
-        )
+        );
         svg.selectAll(".myXaxis").call(xAxis);
-    
+
         y.domain([
             0,
             d3.max(data, function (d) {
@@ -185,7 +181,7 @@ function update(selectedVar) {
 update("1");
 
 function lineMouseOver() {
-    // Update n to be the current line
+    // Update line to be the current line
     line = this.id;
     svg.selectAll(".myLine").transition().duration(200).style("opacity", 0.2);
     d3.select(this).transition().duration(200).style("opacity", 1);
@@ -198,7 +194,7 @@ function lineMouseLeave() {
     focus.style("opacity", 0);
     focusText.style("opacity", 0);
 }
-
+// Function used to make the charts responsive
 function responsivefy(svg) {
     const container = d3.select(svg.node().parentNode),
         width = parseInt(svg.style("width"), 10),

@@ -3,19 +3,17 @@ const express = require("express");
 const morgan = require("morgan");
 
 const PORT = process.env.PORT || 8080;
-const DB_USER = process.env.DB_USER || "edymhxqp";
-const DB_HOST = process.env.DB_HOST || "abul.db.elephantsql.com";
-const DB_NAME = process.env.DB_NAME || "edymhxqp";
-const DB_PW = process.env.DB_PW || "JhNprfSRJ60oDMDygG_jAhyuRnIKIURb";
+const DB_USER = process.env.DB_USER;
+const DB_HOST = process.env.DB_HOST;
+const DB_NAME = process.env.DB_NAME;
+const DB_PW = process.env.DB_PW;
 const DB_PORT = process.env.DB_PORT || 5432;
 
 console.warn("Lige nu er databasenavn sat til:", DB_NAME);
 console.log("Postgres database:", DB_NAME);
 console.log("Postgres user:", DB_USER);
 
-/*
- * Herunder laves web-serveren
- */
+// Herunder laves web-serveren
 const app = express();
 const client = new Client({
     user: DB_USER,
