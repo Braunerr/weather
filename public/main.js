@@ -1,4 +1,6 @@
 // The map
+let continents = ["Africa", "Asia", "Europe", "North America", "Oceania", "South America"];
+
 const svgMap = d3.select("#world"),
     widthMap = +svgMap.attr("width"),
     heightMap = +svgMap.attr("height");
@@ -30,6 +32,8 @@ Promise.all([d3.json("continents.json")]).then(function (loadData) {
         d3.select("#chart").selectAll("path").remove();
         // Update chart with id
         update(this.id);
+        console.log(this.id);
+        svg.select("#title").text("Phenoma Per Year - " + continents[this.id])
     }
 
     // Draw the map
@@ -78,10 +82,9 @@ svg.append("g")
 // Title
 svg.append("text")             
 .attr("y", -7)
-.attr("x", 50)
-.style("text-anchor", "middle")
-.style("fill", "white")
-.text("Phenomena Per Year");
+.attr("id", "title")
+.style("text-anchor", "left")
+.style("fill", "white");
 
 
 // Add Y axis
@@ -108,6 +111,7 @@ svg.append("rect").style("fill", "none").style("pointer-events", "all").attr("wi
 let line;
 
 function update(selectedVar) {
+    svg.select("#title").text("Phenoma Per Year - Asia")
     let lineId = -1; // Line id
     // Parse the Data
     d3.json(`/data/${selectedVar}`, {
