@@ -101,7 +101,6 @@ p {
 
 #legend {
     float: right;
-    padding-bottom: 20px;
 }
 
 .legend {
@@ -109,6 +108,7 @@ p {
     font-weight: bold;
     float: left;
     margin-right: 35px;
+    padding-bottom: 20px;
 }
 
 #req{
