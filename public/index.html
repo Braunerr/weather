@@ -2,51 +2,48 @@
 
 <head>
     
-  <meta charset="UTF-8">
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css"/>
-  <title>Extreme Weather</title>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css"/>
+    <title>Extreme Weather</title>
+</head>
+<body>
+    <div class="row">
 
-    <body>
-        <div id="wrapper">
-
-            <div id="landing">
-                <h1>Extreme weather phenomena
-                    <br> 
-                    A new norm? </h1>
-                <p>
-                    Here we have tried to come up with an easy-to-understand visualization of how the development of extreme weather phenomena has developed over the last 5 decades on the different continents.
-                    <br>
-                    You will be able to explore the evolution of the various extreme weather phenomena in the different continents by using our interactive world map.
-                    <br>
-                    <br>
-                    <a href="FAQ.html"><button class="btn">FAQ</button></a>
-                     
-                    <br>
-                    
-                </p>
-
-                <a id="anchor" href="#world"><img src="arrow.png" alt="This should be an arrow" /></a>
-            </div>
-            <svg id="world" width="800" height="350"></svg>
-
-            
-
-            <div id="chart">
-            </div>
-            <div id="legend">
-                <ul>
-                    <li style = "color: #e41a1c"> Drought </li>
-                    <li style = "color:  #377eb8"> Extreme Temperature </li>
-                    <li style = "color: #4daf4a"> Flood </li>
-                    <li style = "color: #984ea3"> Storm </li>
-                    <li style = "color: #ff7f00"> Wildfire </li>
-                </ul>
-            </div>
+        <div class="col-12" id="landing">
+            <h1>Extreme weather phenomena <br> A new norm? </h1>
+            <p>
+                Here we have tried to come up with an easy-to-understand visualization of how the developmentof extreme weather phenomena has developed over the last five decades on the different continents.
+                <br>
+                <br>
+                You will be able to explore the evolution of the various extreme weather phenomena in the different continents by using our interactive world map.
+                <br>
+                <br>
+                <a href="FAQ.html"><button class="btn">FAQ</button></a>
+                <br>
+            </p>
+            <a id="anchor" href="#world"><img src="arrow.png" alt="This should be an arrow" /></a>
         </div>
-        <script src="https://d3js.org/d3.v6.js"></script>
-        <script src="main.js"></script>
-    </body>
+    </div>
+    <div class="row">
+        
+            <div class="col-6" id="world"></div>
+             
+            <div class="col-6" id="chart"></div>
+    </div>
+    <div class="col-6" id="legend">
+        <ul>
+            <li style = "color: #e41a1c"> Drought </li>
+            <li style = "color:  #377eb8"> Extreme Temperature </li>
+            <li style = "color: #4daf4a"> Flood </li>
+            <li style = "color: #ff7f00"> Wildfire </li>
+            <li style = "color: #984ea3"> Storm </li>
+        </ul>
+    </div>
+    <script src="https://d3js.org/d3.v6.js"></script>
+    <script src="main.js"></script>
+</body>
 </html>
+    

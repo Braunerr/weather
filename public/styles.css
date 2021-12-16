@@ -2,6 +2,31 @@
     box-sizing: border-box;
 }
 
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+
+[class*="col-"] {
+    float: left;
+}
+  
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+
+
 body {
     font-family: "Lato", sans-serif;
     margin: 0;
@@ -27,88 +52,24 @@ body {
 
 #landing {
     height: 100%;
-    width: 100%;
+    padding-top: 50px;
+    padding-left: 20%;
+    padding-right: 20%;
 }
 
 h1 {
-    position: absolute;
-    left: 50%;
-    margin-left: -375px;
-    width: 750px;
-    margin-top: 150px;
-
-    font-size: 40px;
-    text-align: center;
-    color: #0AEAF2;
-}
-
-h2 {
-    position: absolute;
-    left: 50%;
-    margin-left: -375px;
-    width: 750px;
-    margin-top: 50px;
-
     font-size: 40px;
     text-align: center;
     color: #0AEAF2;
 }
 
 h3 {
-    position: absolute;
-    left: 50%;
-    margin-left: -375px;
-    width: 750px;
-    margin-top: 320px;
-
-    font-size: 25px;
-    text-align: center;
-    color: #0AEAF2;
-}
-
-h4 {
-    position: absolute;
-    left: 50%;
-    margin-left: -375px;
-    width: 750px;
-    margin-top: 120px;
-
     font-size: 25px;
     text-align: center;
     color: #0AEAF2;
 }
 
 p {
-    position: absolute;
-    left: 50%;
-    margin-left: -375px;
-    top: 300px;
-    width: 750px;
-
-    font-size: 20px;
-    text-align: center;
-    color: #fff;
-}
-
-p1 {
-    position: absolute;
-    left: 50%;
-    margin-left: -375px;
-    top: 150px;
-    width: 750px;
-
-    font-size: 20px;
-    text-align: center;
-    color: #fff;
-}
-
-p2 {
-    position: absolute;
-    left: 50%;
-    margin-left: -375px;
-    top: 350px;
-    width: 750px;
-
     font-size: 20px;
     text-align: center;
     color: #fff;
@@ -130,18 +91,14 @@ p2 {
 }
 
 #world {
-    width: 48%;
-    float: left;
-    margin-top: 70px;
+    margin-top: 100px;
 }
 
 #chart {
-    width: 48%;
-    float: left;
-    margin-top: 120px;
+    margin-top: 100px;
 }
+
 #legend {
-    width: 48%;
     float: right;
     margin-top: 20px;
 }
@@ -162,6 +119,22 @@ li {
     }
     100% {
         bottom: 60px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    [class*="col-"] {
+      width: 100%;
+    }
+
+    #landing {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    #chart {
+        margin-top: 0;
     }
 }
 

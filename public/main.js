@@ -1,17 +1,23 @@
 // The map
 let continents = ["Africa", "Asia", "Europe", "North America", "Oceania", "South America"];
 
-const svgMap = d3.select("#world"),
-    widthMap = +svgMap.attr("width"),
-    heightMap = +svgMap.attr("height");
+const marginMap = { top: 15, right: 15, bottom: 15, left: 15 },
+    widthMap = 900 - marginMap.left - marginMap.right,
+    heightMap = 635 - marginMap.top - marginMap.bottom;
+
+const svgMap = d3
+    .select("#world")
+    .append("svg")
+    .attr("width", widthMap + marginMap.left + marginMap.right)
+    .attr("height", heightMap + marginMap.top + marginMap.bottom)
 
 // Map and projection
 svgMap.call(responsivefy);
 const path = d3.geoPath();
 const projection = d3
     .geoMercator()
-    .scale(115)
-    .center([0, 20])
+    .scale(140)
+    .center([-25, 35])
     .translate([widthMap / 2.2, heightMap / 2]);
 
 // Load data
@@ -75,10 +81,7 @@ const svg = d3
 // Add X axis
 const x = d3.scaleLinear().range([0, width]);
 const xAxis = d3.axisBottom().scale(x).tickFormat(d3.format("d"));
-svg.append("g")
-.attr("transform", `translate(0, ${height})`)
-.attr("class", "myXaxis")
-.style("color", "white")
+svg.append("g").attr("transform", `translate(0, ${height})`).attr("class", "myXaxis").style("color", "white");
 // Title
 svg.append("text")             
 .attr("y", -7)
@@ -90,9 +93,7 @@ svg.append("text")
 // Add Y axis
 const y = d3.scaleLinear().range([height, 0]);
 const yAxis = d3.axisLeft().scale(y);
-svg.append("g")
-.attr("class", "myYaxis")
-.style("color", "white")
+svg.append("g").attr("class", "myYaxis").style("color", "white");
 
 // Find the closest X index of the mouse:
 let bisect = d3.bisector(function (d) {
@@ -126,9 +127,9 @@ function update(selectedVar) {
             d3.extent(data, function (d) {
                 return d.year;
             })
-        );
+        )
         svg.selectAll(".myXaxis").call(xAxis);
-
+    
         y.domain([
             0,
             d3.max(data, function (d) {
@@ -157,9 +158,9 @@ function update(selectedVar) {
             .transition()
             .duration(1000)
             .attr("class", "myLine")
-            .attr("id", function(){
+            .attr("id", function () {
                 // Use array to create the id of the line
-                let id = ["Drought", "Extreme temperature", "Flood", "Storm", "Wildfire"]
+                let id = ["Drought", "Extreme temperature", "Flood", "Storm", "Wildfire"];
                 lineId++;
                 return id[lineId];
             })
@@ -197,7 +198,6 @@ function lineMouseLeave() {
     focus.style("opacity", 0);
     focusText.style("opacity", 0);
 }
-
 
 function responsivefy(svg) {
     const container = d3.select(svg.node().parentNode),
