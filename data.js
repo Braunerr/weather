@@ -99,7 +99,7 @@ app.post("/data/Europe", async (req, res) => {
 });
 
 //North America
-app.post("/data/North America", async (req, res) => {
+app.post("/data/North%20America", async (req, res) => {
     try {
         const query = 
         `SELECT disaster_type, year, count(disaster_type)
@@ -147,7 +147,7 @@ app.post("/data/Oceania", async (req, res) => {
 });
 
 // South America
-app.post("/data/South America", async (req, res) => {
+app.post("/data/South%20America", async (req, res) => {
     try {
         const query = 
         `SELECT disaster_type, year, count(disaster_type)
