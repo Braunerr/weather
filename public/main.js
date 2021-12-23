@@ -178,7 +178,7 @@ function update(selectedVar) {
     });
 }
 
-update("1");
+update("Asia");
 
 function lineMouseOver() {
     // Update line to be the current line

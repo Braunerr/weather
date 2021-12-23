@@ -3115,7 +3115,7 @@
         },
         {
             "type": "Feature",
-            "properties": { "CONTINENT": "NorthAmerica" },
+            "properties": { "CONTINENT": "North America" },
             "geometry": {
                 "type": "MultiPolygon",
                 "coordinates": [
@@ -11498,7 +11498,7 @@
         },
         {
             "type": "Feature",
-            "properties": { "CONTINENT": "SouthAmerica" },
+            "properties": { "CONTINENT": "South America" },
             "geometry": {
                 "type": "MultiPolygon",
                 "coordinates": [
