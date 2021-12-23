@@ -3,7 +3,7 @@
     "features": [
         {
             "type": "Feature",
-            "properties": { "CONTINENT": "1" },
+            "properties": { "CONTINENT": "Asia" },
             "geometry": {
                 "type": "MultiPolygon",
                 "coordinates": [
@@ -3115,7 +3115,7 @@
         },
         {
             "type": "Feature",
-            "properties": { "CONTINENT": "3" },
+            "properties": { "CONTINENT": "North America" },
             "geometry": {
                 "type": "MultiPolygon",
                 "coordinates": [
@@ -8611,7 +8611,7 @@
         },
         {
             "type": "Feature",
-            "properties": { "CONTINENT": "2" },
+            "properties": { "CONTINENT": "Europe" },
             "geometry": {
                 "type": "MultiPolygon",
                 "coordinates": [
@@ -10902,7 +10902,7 @@
         },
         {
             "type": "Feature",
-            "properties": { "CONTINENT": "0" },
+            "properties": { "CONTINENT": "Africa" },
             "geometry": {
                 "type": "MultiPolygon",
                 "coordinates": [
@@ -11498,7 +11498,7 @@
         },
         {
             "type": "Feature",
-            "properties": { "CONTINENT": "5" },
+            "properties": { "CONTINENT": "South America" },
             "geometry": {
                 "type": "MultiPolygon",
                 "coordinates": [
@@ -12469,7 +12469,7 @@
         },
         {
             "type": "Feature",
-            "properties": { "CONTINENT": "4" },
+            "properties": { "CONTINENT": "Oceania" },
             "geometry": {
                 "type": "MultiPolygon",
                 "coordinates": [

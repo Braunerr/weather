@@ -27,7 +27,7 @@ app.use(morgan("combined"));
 // Her defineres API'en.
 
 // Africa
-app.post("/data/0", async (req, res) => {
+app.post("/data/Africa", async (req, res) => {
     try {
         const query = 
         `SELECT disaster_type, year, count(disaster_type)
@@ -51,7 +51,7 @@ app.post("/data/0", async (req, res) => {
 });
 
 // Asia
-app.post("/data/1", async (req, res) => {
+app.post("/data/Asia", async (req, res) => {
     try {
         const query = 
         `SELECT disaster_type, year, count(disaster_type)
@@ -75,7 +75,7 @@ app.post("/data/1", async (req, res) => {
 });
 
 // Europe
-app.post("/data/2", async (req, res) => {
+app.post("/data/Europe", async (req, res) => {
     try {
         const query = 
         `SELECT disaster_type, year, count(disaster_type)
@@ -99,7 +99,7 @@ app.post("/data/2", async (req, res) => {
 });
 
 //North America
-app.post("/data/3", async (req, res) => {
+app.post("/data/North America", async (req, res) => {
     try {
         const query = 
         `SELECT disaster_type, year, count(disaster_type)
@@ -123,7 +123,7 @@ app.post("/data/3", async (req, res) => {
 });
 
 // Oceania
-app.post("/data/4", async (req, res) => {
+app.post("/data/Oceania", async (req, res) => {
     try {
         const query = 
         `SELECT disaster_type, year, count(disaster_type)
@@ -147,7 +147,7 @@ app.post("/data/4", async (req, res) => {
 });
 
 // South America
-app.post("/data/5", async (req, res) => {
+app.post("/data/South America", async (req, res) => {
     try {
         const query = 
         `SELECT disaster_type, year, count(disaster_type)

@@ -1,6 +1,4 @@
 // The map
-let continents = ["Africa", "Asia", "Europe", "North America", "Oceania", "South America"];
-
 const marginMap = { top: 15, right: 15, bottom: 15, left: 15 },
     widthMap = 900 - marginMap.left - marginMap.right,
     heightMap = 635 - marginMap.top - marginMap.bottom;
@@ -39,7 +37,7 @@ Promise.all([d3.json("continents.json")]).then(function (loadData) {
         d3.select("#chart").selectAll("path").remove();
         // Update chart with id
         update(this.id);
-        svg.select("#title").text("Phenoma Per Year - " + continents[this.id]);
+        svg.select("#title").text("Phenoma Per Year - " + this.id);
     }
 
     // Draw the map
